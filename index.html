@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0b0705">
+<meta name="description" content="龙炉·铸剑纳贡 — 手机可玩的锻剑押注小游戏：敲得越多价值越高，碎裂的风险也越大。">
+<meta name="format-detection" content="telephone=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="龙炉">
+<title>龙炉 · 铸剑纳贡</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="hud">
+    <div class="hud__cell">
+      <span class="hud__label">回合</span>
+      <strong id="round">1</strong>
+    </div>
+
+    <div class="dragon" id="dragon" data-anger="0">
+      <svg class="eye" viewBox="0 0 72 40" aria-hidden="true">
+        <path class="eye__outline" d="M4 20 C 16 3.5, 56 3.5, 68 20 C 56 36.5, 16 36.5, 4 20 Z"/>
+        <circle class="eye__iris" cx="36" cy="20" r="11.5"/>
+        <ellipse class="eye__pupil" cx="36" cy="20" rx="2.7" ry="10.5"/>
+        <circle class="eye__glint" cx="31" cy="15.5" r="2.4"/>
+      </svg>
+      <div class="pips" id="pips" role="img" aria-label="龙怒"></div>
+    </div>
+
+    <div class="hud__cell hud__cell--gold">
+      <span class="hud__label">金币</span>
+      <strong id="gold">0</strong>
+    </div>
+
+    <button type="button" class="icon-btn" id="btnSound" aria-label="音效开关">🔊</button>
+    <a class="icon-btn" id="btnHome" href="https://qiuye-autumnnight.github.io/" aria-label="返回游戏盒">🏠</a>
+  </header>
+
+  <section class="forge">
+    <canvas id="scene"></canvas>
+    <div class="forge__top">
+      <span class="forge__cap">剑坯价值</span>
+      <strong class="forge__value" id="value">0</strong>
+    </div>
+    <div class="quota">
+      <div class="quota__row">
+        <span>贡品要求</span>
+        <strong id="quota">250</strong>
+      </div>
+      <div class="quota__bar"><i id="quotaFill"></i></div>
+    </div>
+  </section>
+
+  <section class="meters">
+    <div class="meter">
+      <div class="meter__head">
+        <span>过载</span>
+        <strong id="loadTxt">0%</strong>
+      </div>
+      <div class="meter__bar"><i id="loadFill"></i></div>
+    </div>
+    <div class="risk" id="riskBox">
+      <span>碎裂风险</span>
+      <strong id="riskTxt">0%</strong>
+    </div>
+    <div class="meter">
+      <div class="meter__head">
+        <span>入神充能</span>
+        <strong id="chargeTxt">0%</strong>
+      </div>
+      <div class="meter__bar meter__bar--charge"><i id="chargeFill"></i></div>
+    </div>
+  </section>
+
+  <section class="timing" id="timing">
+    <div class="timing__track">
+      <span class="timing__good" id="zoneGood"></span>
+      <span class="timing__perfect" id="zonePerfect"></span>
+      <span class="timing__cursor" id="cursor"></span>
+    </div>
+    <p class="timing__hint" id="hint">光标进入亮区时敲击</p>
+  </section>
+
+  <footer class="actions">
+    <button type="button" class="btn btn--strike" id="btnStrike">敲击</button>
+    <button type="button" class="btn btn--submit" id="btnSubmit">交贡</button>
+  </footer>
+
+  <div class="overlay" id="overlay" hidden>
+    <div class="overlay__card">
+      <h2 class="overlay__title" id="ovTitle"></h2>
+      <p class="overlay__text" id="ovText"></p>
+      <div class="relics" id="relics" hidden></div>
+      <button type="button" class="btn btn--primary" id="ovBtn"></button>
+    </div>
+  </div>
+</div>
+<script src="./game.js"></script>
+</body>
+</html>
